@@ -45,7 +45,6 @@ class faqmanager_module
 		$form_key			= 'faq_manage';
 		add_form_key($form_key);
 
-
 		$submit		= ($this->request->is_set_post('submit')) ? true : false;
 		$action		= $this->request->variable('action', '');
 		$file		= $this->request->variable('file', '');
@@ -117,7 +116,7 @@ class faqmanager_module
 			case 'undo' :
 				@copy($this->phpbb_root_path . 'store/faq_backup/' . $file . '.' . $this->phpEx . '.bak', $this->phpbb_root_path . 'language/' . $file . '.' . $this->phpEx);
 
-				// Log
+				$phpbb_log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_FAQ_RESTORE');
 				trigger_error($this->user->lang('FAQ_EDIT_SUCCESS') . adm_back_link($this->u_action . "&amp;file={$file}"));
 			break;
 
@@ -139,7 +138,7 @@ class faqmanager_module
 					}
 
 					$this->output_faq($faq, $file);
-					// Log
+					$phpbb_log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_FAQ_ADD');
 					trigger_error($this->user->lang['FAQ_EDIT_SUCCESS'] . adm_back_link($this->u_action . "&amp;file={$file}" . (($cat_id) ? "&amp;cat={$cat_id}" : '&amp;cat=' . (sizeof($faq)))));
 				}
 				else
@@ -168,7 +167,7 @@ class faqmanager_module
 					}
 
 					$this->output_faq($faq, $file);
-					// Log
+					$phpbb_log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_FAQ_EDIT');
 					trigger_error($this->user->lang('FAQ_EDIT_SUCCESS') . adm_back_link($this->u_action . "&amp;file={$file}" . (($field_id) ? "&amp;cat={$cat_id}" : '')));
 				}
 				else
@@ -197,12 +196,12 @@ class faqmanager_module
 					}
 
 					$this->output_faq($faq, $file);
-					// Log
+					$phpbb_log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_FAQ_DELETE');
 					trigger_error($this->user->lang('FAQ_EDIT_SUCCESS') . adm_back_link($this->u_action . "&amp;file={$file}" . (($field_id) ? "&amp;cat={$cat_id}" : '')));
 				}
 				else
 				{
-					confirm_box(false, ((!$field_id) ? 'DELETE_CAT' : 'DELETE_VAR'));
+					confirm_box(false, ((!$field_id) ? $this->user->lang('DELETE_CAT') : $this->user->lang('DELETE_VAR')));
 				}
 				redirect($this->u_action);
 			break;
@@ -225,7 +224,7 @@ class faqmanager_module
 				unset($temp);
 				$this->output_faq($faq, $file);
 			// no break
-			
+
 			default :
 				$this->template->assign_vars(array(
 					'L_TITLE_EXPLAIN'		=> $this->user->lang('FAQ_CAT_LIST'),

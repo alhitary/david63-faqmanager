@@ -22,7 +22,7 @@ class version_1_0_0 extends \phpbb\db\migration\migration
 			array('module.add', array(
 				'acp', 'FAQ_MANAGER', array(
 					'module_basename'	=> '\david63\faqmanager\acp\faqmanager_module',
-					'modes'				=> array('manage', 'edit'),
+					'modes'				=> array('manage'),
 				),
 			)),
 		);
