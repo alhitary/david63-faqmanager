@@ -59,6 +59,7 @@ $lang = array_merge($lang, array(
 
 	'NOT_ALLOWED_OUT_OF_DIR'	=> 'You are not allowed to edit files out of the language directory.',
 	'NO_FAQ_FILES'				=> 'No Available FAQ Files.',
+	'NO_FAQ_VARS'				=> 'There are no FAQs in the file.',
 
 	'VAR_NOT_EXIST'				=> 'The requested variable does not exist.',
 ));
