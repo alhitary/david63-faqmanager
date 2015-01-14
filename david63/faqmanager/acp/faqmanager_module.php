@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package FAQ&nbsp;Manager
+* @package FAQ Manager
 * @copyright (c) 2015 david63
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
@@ -98,8 +98,9 @@ class faqmanager_module
 			{
 				trigger_error('VAR_NOT_EXIST');
 			}
-			$field = $faq[$cat_id][$field_id][0];
-			$category = $faq[$cat_id]['--'];
+
+			$field		= $faq[$cat_id][$field_id][0];
+			$category	= $faq[$cat_id]['--'];
 		}
 		else if ($cat_id)
 		{
@@ -113,18 +114,14 @@ class faqmanager_module
 
 		switch ($action)
 		{
-			case 'undo' :
+			case 'undo':
 				@copy($this->phpbb_root_path . 'store/faq_backup/' . $file . '.' . $this->phpEx . '.bak', $this->phpbb_root_path . 'language/' . $file . '.' . $this->phpEx);
-
 				$phpbb_log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_FAQ_RESTORE');
 				trigger_error($this->user->lang('FAQ_EDIT_SUCCESS') . adm_back_link($this->u_action . "&amp;file={$file}"));
 			break;
 
-			case 'add' :
-				if ($this->request->is_set_post('add') && $this->request->is_set_post('var_value') && !$category)
-				{
-					$submit = true;
-				}
+			case 'add':
+				$submit = ($this->request->is_set_post('add') && $this->request->is_set_post('var_value') && !$category) ? true : $submit;
 
 				if ($submit)
 				{
@@ -154,7 +151,7 @@ class faqmanager_module
 				}
 			break;
 
-			case 'edit' :
+			case 'edit':
 				if ($submit)
 				{
 					if ($field_id)
@@ -183,7 +180,7 @@ class faqmanager_module
 				}
 			break;
 
-			case 'delete' :
+			case 'delete':
 				if (confirm_box(true))
 				{
 					if ($field_id)
@@ -206,7 +203,7 @@ class faqmanager_module
 				redirect($this->u_action);
 			break;
 
-			case 'move_down' : // we do a trick with the output url, so there is no move_up mode
+			case 'move_down': // we do a trick with the output url, so there is no move_up mode
 				$next = false;
 				if ($field_id)
 				{
@@ -221,11 +218,12 @@ class faqmanager_module
 					$faq[$cat_id + 1] = $temp;
 					$cat_id = 0;
 				}
+
 				unset($temp);
 				$this->output_faq($faq, $file);
 			// no break
 
-			default :
+			default:
 				$this->template->assign_vars(array(
 					'L_TITLE_EXPLAIN'		=> $this->user->lang('FAQ_CAT_LIST'),
 					'L_CREATE'				=> ($cat_id) ? $this->user->lang('CREATE_FIELD') : $this->user->lang('CREATE_CATEGORY'),
@@ -328,11 +326,12 @@ $help = array(
 		if (!@is_writable($this->phpbb_root_path . 'store/faq_backup/' . substr($file, 0, strrpos($file, '/'))))
 		{
 			@chmod($this->phpbb_root_path . 'store/faq_backup/' . substr($file, 0, strrpos($file, '/')), 0777);
-		}
 
-		if (!@is_writable($this->phpbb_root_path . 'store/faq_backup/' . substr($file, 0, strrpos($file, '/'))))
-		{
-			trigger_error($this->user->lang['BACKUP_LOCATION_NO_WRITE'] . ' - store/faq_backup/' . substr($file, 0, strrpos($file, '/')));
+			// Let's just check that it worked and if not send error message
+			if (!@is_writable($this->phpbb_root_path . 'store/faq_backup/' . substr($file, 0, strrpos($file, '/'))))
+			{
+				trigger_error($this->user->lang['BACKUP_LOCATION_NO_WRITE'] . ' - store/faq_backup/' . substr($file, 0, strrpos($file, '/')));
+			}
 		}
 
 		@copy($this->phpbb_root_path . 'language/' . $file . '.' . $this->phpEx, $this->phpbb_root_path . 'store/faq_backup/' . $file . '.' . $this->phpEx . '.bak');
@@ -341,11 +340,12 @@ $help = array(
 		if (!@is_writable($this->phpbb_root_path . 'language/' . $file . '.' . $this->phpEx))
 		{
 			@chmod($this->phpbb_root_path . 'language/' . $file . '.' . $this->phpEx, 0777);
-		}
 
-		if (!@is_writable($this->phpbb_root_path . 'language/' . $file . '.' . $this->phpEx))
-		{
-			trigger_error($this->user->lang['FAQ_FILE_NO_WRITE'] . ' - language/' . $file . '.' . $this->phpEx);
+			// Let's just check that it worked and if not send error message
+			if (!@is_writable($this->phpbb_root_path . 'language/' . $file . '.' . $this->phpEx))
+			{
+				trigger_error($this->user->lang['FAQ_FILE_NO_WRITE'] . ' - language/' . $file . '.' . $this->phpEx);
+			}
 		}
 
 		if ($fp = @fopen($this->phpbb_root_path . 'language/' . $file . '.' . $this->phpEx, 'wb'))
@@ -354,7 +354,6 @@ $help = array(
 			@fwrite($fp, $output);
 			@flock($fp, LOCK_UN);
 			@fclose($fp);
-
 			@chmod($filename, 0666);
 		}
 	}
@@ -374,6 +373,7 @@ $help = array(
 				if (strpos($file, '.') === false && is_dir($this->phpbb_root_path . 'language/' . $file))
 				{
 					$dh1 = @opendir($this->phpbb_root_path . 'language/' . $file);
+
 					if ($dh1)
 					{
 						while (($file1 = readdir($dh1)) !== false)
@@ -387,6 +387,7 @@ $help = array(
 								if (strpos($file1, '.') === false && is_dir($this->phpbb_root_path . 'language/' . $file . '/' . $file1))
 								{
 									$dh2 = @opendir($this->phpbb_root_path . 'language/' . $file . '/' . $file1);
+
 									if ($dh2)
 									{
 										while (($file2 = readdir($dh2)) !== false)
@@ -447,9 +448,8 @@ $help = array(
 	*/
 	protected function build_faq_array($help)
 	{
-		$faq = array();
-
-		$cat_id = $field_id = 0;
+		$faq	= array();
+		$cat_id	= $field_id = 0;
 		foreach ($help as $ary)
 		{
 			if ($ary[0] == '--')

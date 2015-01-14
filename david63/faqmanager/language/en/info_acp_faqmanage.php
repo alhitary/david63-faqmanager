@@ -1,7 +1,7 @@
 <?php
 /**
 *
-* @package FAQ&nbsp;Manager
+* @package FAQ Manager
 * @copyright (c) 2015 david63
 * @license http://opensource.org/licenses/gpl-license.php GNU Public License
 *
