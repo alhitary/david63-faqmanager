@@ -3,7 +3,7 @@
 	"type": "phpbb-extension",
 	"description": "Adds an easy to use FAQ Manager for the ACP.",
 	"homepage": "",
-	"version": "1.0.0-b1",
+	"version": "1.0.0-b2",
 	"time": "2015-01-12",
 	"keywords": ["phpbb", "extension", "faq", "ACP", "FAQ"],
 	"license": "GPL-2.0",

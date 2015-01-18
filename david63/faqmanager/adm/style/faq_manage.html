@@ -16,16 +16,16 @@
 	<form id="varedit" method="post" action="{U_ACTION}">
 
 	<fieldset>
-		<legend>{L_SETTINGS}</legend>
+		<legend>{L_FAQ_SETTINGS}</legend>
 		<!-- IF not S_CAT -->
 		<dl>
-			<dt><label for="var_name">{L_NAME}:</label></dt>
+			<dt><label for="var_name">{L_FAQ_QUESTION}:</label></dt>
 			<dd><input class="text medium" type="text" id="var_name" name="var_name" value="{VARIABLE_NAME}" maxlength="255" /></dd>
 		</dl>
 		<!-- ENDIF -->
 
 		<dl>
-			<dt><label for="var_desc">{L_VALUE}:</label></dt>
+			<dt><label for="var_desc">{L_FAQ_ANSWER}:</label></dt>
 			<dd><textarea id="var_desc" name="var_value" rows="5" cols="45">{VARIABLE_VALUE}</textarea></dd>
 		</dl>
 	</fieldset>
@@ -91,9 +91,9 @@
 	<table cellspacing="1"><col class="row1" /><col class="row2" /><col class="row2" /><col class="row2" />
 		<thead>
 			<tr>
-				<th>{L_NAME}</th>
-				<th>{L_LANGUAGE}</th>
-				<th>{L_LOCATION}</th>
+				<th>{L_FAQ_NAME}</th>
+				<th>{L_FAQ_LANGUAGE}</th>
+				<th>{L_FAQ_LOCATION}</th>
 				<th>{L_ACTION}</th>
 			</tr>
 		</thead>

@@ -42,13 +42,19 @@ $lang = array_merge($lang, array(
 	'DELETE_CAT'				=> 'Delete category',
 	'DELETE_VAR'				=> 'Delete topic',
 
+	'FAQ_ANSWER'				=> 'FAQ answer',
 	'FAQ_CAT_LIST'				=> 'Here you can see and edit existing Categories.<br /><br /><strong>Note that a category named -- is the section break for the FAQ display page.</strong>',
 	'FAQ_EDIT_SUCCESS'			=> 'The FAQ was updated successfully.',
 	'FAQ_FILE_NOT_EXIST'		=> 'The file you are attempting to edit does not exist.',
 	'FAQ_FILE_NO_WRITE'			=> 'Unable to update the file.  Please check the file permissions for the file you are attempting to edit.',
 	'FAQ_FILE_SELECT'			=> 'Select the file you would like to edit.',
+	'FAQ_LANGUAGE'				=> 'Language',
+	'FAQ_LOCATION'				=> 'Location',
 	'FAQ_MANAGER'				=> 'FAQ Manager',
 	'FAQ_MANAGE'				=> 'Manage FAQs',
+	'FAQ_NAME'					=> 'Name',
+	'FAQ_QUESTION'				=> 'FAQ',
+	'FAQ_SETTINGS'				=> 'Create/edit FAQ item',
 
 	'LOAD_BACKUP'				=> 'Load Backup',
 
