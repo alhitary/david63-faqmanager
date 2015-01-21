@@ -72,6 +72,7 @@ class faqmanager_module
 			// list the available files
 			$this->template->assign_vars(array(
 				'L_TITLE_EXPLAIN'		=> $this->user->lang['FAQ_FILE_SELECT'],
+				'S_CAT_LIST'			=> false,
 				'S_DISPLAY_FILE_LIST'	=> true,
 			));
 
@@ -81,7 +82,7 @@ class faqmanager_module
 					'NAME'			=> substr($loc, (strpos($loc, '/help_') + 6)),
 					'LANGUAGE'		=> substr($loc, 0, strpos($loc, '/')),
 					'LOCATION'		=> 'language/' . $loc . '.' . $this->phpEx,
-					'ACTION'		=> '<a href="' . $this->u_action . '&amp;file=' . $loc . '">' . $this->user->lang['EDIT'] . '</a>',
+					'ACTION'		=> '<a href="' . $this->u_action . '&amp;action=file&amp;file=' . $loc . '">' . $this->user->lang['EDIT'] . '</a>',
 				));
 			}
 		}
@@ -128,20 +129,22 @@ class faqmanager_module
 					if ($cat_id)
 					{
 						$faq[$cat_id][] = array(0 => $new_name, 1 => $new_value);
+						$success = $this->user->lang['FAQ_TOPIC_SUCCESS'];
 					}
 					else
 					{
 						$faq[] = array('--' => $new_value);
+						$success = $this->user->lang['FAQ_CAT_SUCCESS'];
 					}
 
 					$this->output_faq($faq, $file);
 					$phpbb_log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_FAQ_ADD');
-					trigger_error($this->user->lang['FAQ_EDIT_SUCCESS'] . adm_back_link($this->u_action . "&amp;file={$file}" . (($cat_id) ? "&amp;cat={$cat_id}" : '&amp;cat=' . (sizeof($faq)))));
+					trigger_error($success . $this->adm_next_link($this->u_action . "&amp;action=cat&amp;file={$file}" . (($cat_id) ? "&amp;cat={$cat_id}" : '&amp;cat=' . (sizeof($faq)))));
 				}
 				else
 				{
 					$this->template->assign_vars(array(
-						'L_TITLE_EXPLAIN'		=> $this->user->lang['FAQ_CAT_LIST'],
+						'L_TITLE_EXPLAIN'		=> $this->user->lang['FAQ_CAT_TOPIC'],
 						'NAVIGATION'			=> "<a href=\"{$this->u_action}&amp;file={$file}\">{$file}</a>" . (($cat_id) ? ' -&gt; ' . "<a href=\"{$this->u_action}&amp;file={$file}&amp;cat={$cat_id}\">{$category}</a>" : ''),
 						'VARIABLE_NAME'			=> $new_name,
 						'VARIABLE_VALUE'		=> $new_value,
@@ -170,7 +173,7 @@ class faqmanager_module
 				else
 				{
 					$this->template->assign_vars(array(
-						'L_TITLE_EXPLAIN'		=> $this->user->lang('FAQ_CAT_LIST'),
+						'L_TITLE_EXPLAIN'		=> $this->user->lang('FAQ_CAT_EDIT'),
 						'NAVIGATION'			=> "<a href=\"{$this->u_action}&amp;file={$file}\">{$file}</a>" . (($cat_id) ? ' -> ' . "<a href=\"{$this->u_action}&amp;file={$file}&amp;cat={$cat_id}\">{$category}</a>" : '') . (($field_id) ? ' -> ' . $field : ''),
 						'VARIABLE_NAME'			=> str_replace('"', '&quot;', ($field_id) ? $faq[$cat_id][$field_id][0] : $faq[$cat_id]['--']),
 						'VARIABLE_VALUE'		=> str_replace('"', '&quot;', ($field_id) ? $faq[$cat_id][$field_id][1] : $faq[$cat_id]['--']),
@@ -194,7 +197,7 @@ class faqmanager_module
 
 					$this->output_faq($faq, $file);
 					$phpbb_log->add('admin', $this->user->data['user_id'], $this->user->ip, 'LOG_FAQ_DELETE');
-					trigger_error($this->user->lang('FAQ_EDIT_SUCCESS') . adm_back_link($this->u_action . "&amp;file={$file}" . (($field_id) ? "&amp;cat={$cat_id}" : '')));
+					trigger_error($this->user->lang('FAQ_DELETE_SUCCESS') . adm_back_link($this->u_action . "&amp;file={$file}" . (($field_id) ? "&amp;cat={$cat_id}" : '')));
 				}
 				else
 				{
@@ -224,12 +227,25 @@ class faqmanager_module
 			// no break
 
 			default:
+				if ($action == 'file')
+				{
+					$explain = $this->user->lang('FAQ_CAT_LIST');
+				}
+				else if ($action == 'cat')
+				{
+					$explain = $this->user->lang('FAQ_CAT_FAQ');
+				}
+				else
+				{
+					$explain = $this->user->lang('FAQ_CAT_FILES');
+				}
+
 				$this->template->assign_vars(array(
-					'L_TITLE_EXPLAIN'		=> $this->user->lang('FAQ_CAT_LIST'),
-					'L_CREATE'				=> ($cat_id) ? $this->user->lang('CREATE_FIELD') : $this->user->lang('CREATE_CATEGORY'),
-					'NAVIGATION'			=> "<a href=\"{$this->u_action}&amp;file={$file}\">{$file}</a>" . (($cat_id) ? ' -> ' . "<a href=\"{$this->u_action}&amp;file={$file}&amp;cat={$cat_id}\">{$category}</a>" : ''),
-					'S_DISPLAY_LIST'		=> ($file) ? true : false,
-					'S_CAT'					=> (!$cat_id),
+					'L_TITLE_EXPLAIN'	=> $explain,
+					'L_CREATE'			=> ($cat_id) ? $this->user->lang('CREATE_FIELD') : $this->user->lang('CREATE_CATEGORY'),
+					'NAVIGATION'		=> "<a href=\"{$this->u_action}&amp;file={$file}\">{$file}</a>" . (($cat_id) ? ' -> ' . "<a href=\"{$this->u_action}&amp;file={$file}&amp;cat={$cat_id}\">{$category}</a>" : ''),
+					'S_DISPLAY_LIST'	=> ($file) ? true : false,
+					'S_CAT'				=> (!$cat_id),
 				));
 
 				$move_up = '';
@@ -466,5 +482,13 @@ $help = array(
 		}
 
 		return $faq;
+	}
+
+		/**
+	* Generate next link for acp pages
+	*/
+	protected function adm_next_link($u_action)
+	{
+		return '<br /><br /><a href="' . $u_action . '"> ' . $this->user->lang['ON_TO_NEXT'] . '&raquo;</a>';
 	}
 }
