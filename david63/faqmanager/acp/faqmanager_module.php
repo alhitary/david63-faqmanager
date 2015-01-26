@@ -235,6 +235,10 @@ class faqmanager_module
 				{
 					$explain = $this->user->lang('FAQ_CAT_FAQ');
 				}
+				else if ($cat_id > 0)
+				{
+					$explain = $this->user->lang('FAQ_CAT_QUESTION');
+				}
 				else
 				{
 					$explain = $this->user->lang('FAQ_CAT_FILES');
