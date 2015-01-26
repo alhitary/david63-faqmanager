@@ -47,13 +47,14 @@ $lang = array_merge($lang, array(
 	'DELETE_VAR'				=> 'Delete topic',
 
 	'FAQ_ANSWER'				=> 'FAQ answer',
-	'FAQ_CAT_EDIT'				=> 'Here you can edit a FAQ topic.',
-	'FAQ_CAT_FAQ'				=> 'Here you can add a topic into the category.',
+	'FAQ_CAT_CAT'				=> 'From here you can edit a FAQ category.',
+	'FAQ_CAT_EDIT'				=> 'From here you can edit a FAQ topic.',
+	'FAQ_CAT_FAQ'				=> 'From here you can add a FAQ topic into the category.',
 	'FAQ_CAT_FILES'				=> 'Select the FAQ file that you want to edit.',
 	'FAQ_CAT_LIST'				=> 'From here you can manage the categories in the selected file.<br /><br /><strong>Note that a category named “--” is the section break for the FAQ display page.</strong>',
 	'FAQ_CAT_SUCCESS'			=> 'The category was added successfully.',
 	'FAQ_CAT_QUESTION'			=> 'From here you can manage the FAQ topics in the selected category.',
-	'FAQ_CAT_TOPIC'				=> 'Here you can create a new FAQ topic.',
+	'FAQ_CAT_TOPIC'				=> 'From here you can create a new FAQ topic.',
 	'FAQ_DELETE_SUCCESS'		=> 'The FAQ data was deleted successfully.',
 	'FAQ_EDIT_SUCCESS'			=> 'The FAQ was updated successfully.',
 	'FAQ_TOPIC_SUCCESS'			=> 'The topic was added successfully.',
@@ -66,7 +67,9 @@ $lang = array_merge($lang, array(
 	'FAQ_MANAGE'				=> 'Manage FAQs',
 	'FAQ_NAME'					=> 'Name',
 	'FAQ_QUESTION'				=> 'FAQ topic',
+	'FAQ_CAT_QUESTION'			=> 'FAQ category',
 	'FAQ_SETTINGS'				=> 'Create/edit FAQ topic',
+	'FAQ_CAT_SETTINGS'			=> 'Edit FAQ category',
 
 	'LOAD_BACKUP'				=> 'Load Backup',
 

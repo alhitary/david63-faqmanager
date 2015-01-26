@@ -53,6 +53,7 @@ class faqmanager_module
 		$new_name	= $this->request->variable('var_name', '', true);
 		$new_value	= $this->request->variable('var_value', '', true);
 
+		$cat_edit	= false;
 		$faq		= array(); // will hold the FAQ file data
 		$self_url	= ($cat_id) ? $this->u_action . "&amp;file={$file}&amp;cat={$cat_id}" . (($field_id) ? "&amp;var={$field_id}" : '') . (($action) ? "&amp;action={$action}" : '') : $this->u_action . "&amp;file={$file}" . (($action) ? "&amp;action={$action}" : '');
 
@@ -172,13 +173,23 @@ class faqmanager_module
 				}
 				else
 				{
+					if ($field_id)
+					{
+						$explain	= $this->user->lang('FAQ_CAT_EDIT');
+					}
+					else
+					{
+						$explain	= $this->user->lang('FAQ_CAT_CAT');
+						$cat_edit	= true;
+					}
 					$this->template->assign_vars(array(
-						'L_TITLE_EXPLAIN'		=> $this->user->lang('FAQ_CAT_EDIT'),
+						'L_TITLE_EXPLAIN'		=> $explain,
 						'NAVIGATION'			=> "<a href=\"{$this->u_action}&amp;file={$file}\">{$file}</a>" . (($cat_id) ? ' -> ' . "<a href=\"{$this->u_action}&amp;file={$file}&amp;cat={$cat_id}\">{$category}</a>" : '') . (($field_id) ? ' -> ' . $field : ''),
 						'VARIABLE_NAME'			=> str_replace('"', '&quot;', ($field_id) ? $faq[$cat_id][$field_id][0] : $faq[$cat_id]['--']),
 						'VARIABLE_VALUE'		=> str_replace('"', '&quot;', ($field_id) ? $faq[$cat_id][$field_id][1] : $faq[$cat_id]['--']),
 						'S_EDIT'				=> true,
 						'S_CAT'					=> (!$field),
+						'S_CAT_EDIT'			=> $cat_edit,
 					));
 				}
 			break;
