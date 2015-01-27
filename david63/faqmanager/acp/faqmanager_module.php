@@ -164,7 +164,7 @@ class faqmanager_module
 					}
 					else if ($cat_id)
 					{
-						$faq[$cat_id]['--'] = $new_value;
+						$faq[$cat_id]['--'] = $new_name;
 					}
 
 					$this->output_faq($faq, $file);
