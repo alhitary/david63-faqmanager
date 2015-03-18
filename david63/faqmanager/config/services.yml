@@ -1,0 +1,11 @@
+services:
+    david63.faqmanager.admin.controller:
+        class: david63\faqmanager\controller\admin_controller
+        arguments:
+            - @config
+            - @request
+            - @template
+            - @user
+            - %core.root_path%
+            - %core.php_ext%
+            - @service_container
