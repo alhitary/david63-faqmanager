@@ -39,7 +39,7 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'BACKUP_LOCATION_NO_WRITE'	=> 'Impossible de créer un fichier de sauvegarde. Merci de vérifier les permissions en écriture pour le répertoire store/faq_backup/ ainsi que les répertoires et fichiers se trouvant à l’intérieur.',
+	'BACKUP_LOCATION_NO_WRITE'	=> 'Impossible de créer un fichier de sauvegarde. Merci de vérifier les permissions en écriture pour le répertoire <samp>store/faq_backup/</samp> ainsi que les répertoires et fichiers se trouvant à l’intérieur.',
 	'BAD_FAQ_FILE'				=> 'Ce fichier n’est pas un fichier de la FAQ.',
 
 	'CATEGORY_NOT_EXIST'			=> 'La catégorie n’existe pas.',
