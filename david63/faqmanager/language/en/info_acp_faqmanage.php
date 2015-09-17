@@ -37,9 +37,10 @@ if (empty($lang) || !is_array($lang))
 //
 
 $lang = array_merge($lang, array(
-	'BACKUP_LOCATION_NO_WRITE'	=> 'Unable to create a backup file. Please check the directory permissions for store/faq_backup/ and every directory and file in it.',
+	'BACKUP_LOCATION_NO_WRITE'	=> 'Unable to create a backup file. Please check the directory permissions for <samp>store/faq_backup/</samp> and every directory and file in it.',
 	'BAD_FAQ_FILE'				=> 'The file you are attempting to edit is not a FAQ file.',
 
+	'CATEGORY_NOT_EXIST'			=> 'Category doesn’t exist',
 	'CREATE_CATEGORY'			=> 'Create category',
 	'CREATE_FIELD'				=> 'Create topic',
 
@@ -67,7 +68,7 @@ $lang = array_merge($lang, array(
 	'FAQ_MANAGE'				=> 'Manage FAQs',
 	'FAQ_NAME'					=> 'Name',
 	'FAQ_QUESTION'				=> 'FAQ topic',
-	'FAQ_CAT_QUESTION'			=> 'FAQ category',
+	'FAQ_CAT_SETTINGS_QUESTION'			=> 'FAQ category',
 	'FAQ_SETTINGS'				=> 'Create/edit FAQ topic',
 	'FAQ_CAT_SETTINGS'			=> 'Edit FAQ category',
 
