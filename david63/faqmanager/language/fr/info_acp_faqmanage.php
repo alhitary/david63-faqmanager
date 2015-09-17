@@ -1,12 +1,12 @@
 <?php
 /**
 *
-* @package FAQ Manager
-* @copyright (c) 2015 david63
-* @license http://opensource.org/licenses/gpl-license.php GNU Public License
+* FAQ manager extension for the phpBB Forum Software package.
+* French translation by fbrcrsi (http://www.fbrcrsi.fr) and Galixte (http://www.galixte.com)
 *
-* Translated and adapted by fbrcrsi - http://www.fbrcrsi.fr
-* for http://www.valeuropeen.fr
+* @copyright (c) 2015 david63
+* @license GNU General Public License, version 2 (GPL-2.0)
+*
 */
 
 /**
@@ -35,13 +35,14 @@ if (empty($lang) || !is_array($lang))
 // in a url you again do not need to specify an order e.g., 'Click %sHERE%s' is fine
 //
 // Some characters you may want to copy&paste:
-// ’ » “ ” …
+// ’ « » “ ” …
 //
 
 $lang = array_merge($lang, array(
-	'BACKUP_LOCATION_NO_WRITE'	=> 'Unable to create a backup file. Please check the directory permissions for store/faq_backup/ and every directory and file in it.',
-	'BAD_FAQ_FILE'				=> 'The file you are attempting to edit is not a FAQ file.',
+	'BACKUP_LOCATION_NO_WRITE'	=> 'Impossible de créer un fichier de sauvegarde. Merci de vérifier les permissions en écriture pour le répertoire <samp>store/faq_backup/</samp> ainsi que les répertoires et fichiers se trouvant à l’intérieur.',
+	'BAD_FAQ_FILE'				=> 'Ce fichier n’est pas un fichier de la FAQ.',
 
+	'CATEGORY_NOT_EXIST'			=> 'La catégorie n’existe pas.',
 	'CREATE_CATEGORY'			=> 'Créer une catégorie',
 	'CREATE_FIELD'				=> 'Créer une question',
 
@@ -49,42 +50,42 @@ $lang = array_merge($lang, array(
 	'DELETE_VAR'				=> 'Supprimer une question',
 
 	'FAQ_ANSWER'				=> 'Réponse',
-	'FAQ_CAT_CAT'				=> 'Edition des catégories.',
-	'FAQ_CAT_EDIT'				=> 'Edition des questions.',
-	'FAQ_CAT_FAQ'				=> 'Ajouter un sujet à une catégorie ici.',
-	'FAQ_CAT_FILES'				=> 'Choisissez le fichier de FAQ à éditer.',
-	'FAQ_CAT_LIST'				=> 'Liste des catégories.<br /><br /><strong>Une catégorie nommée “--” permet de creer un saut de ligne dans votre FAQ.</strong>',
-	'FAQ_CAT_SUCCESS'			=> 'Catégorie ajoutée avec succès.',
-	'FAQ_CAT_QUESTION'			=> 'Gestion des questions de la catégorie.',
-	'FAQ_CAT_TOPIC'				=> 'Edition des questions.',
-	'FAQ_DELETE_SUCCESS'		=> 'Supprimé avec succès.',
-	'FAQ_EDIT_SUCCESS'			=> 'Mis à jour effectuée.',
-	'FAQ_TOPIC_SUCCESS'			=> 'Question ajoutée avec succès.',
-	'FAQ_FILE_NOT_EXIST'		=> 'Le fichier que vous tentez d\'éditer n\'existe pas',
-	'FAQ_FILE_NO_WRITE'			=> 'Impossible de mettre le fichier à jour.  Veuillez vérifier les permissions du fichier.',
-	'FAQ_FILE_SELECT'			=> 'Sélectionnez le fichier FAQ à éditer.',
+	'FAQ_CAT_CAT'				=> 'Depuis cette page, il est possible de modifier la catégorie.',
+	'FAQ_CAT_EDIT'				=> 'Depuis cette page, il est possible de modifier la question.',
+	'FAQ_CAT_FAQ'				=> 'Depuis cette page, il est possible d’ajouter des questions pour cette catégorie.',
+	'FAQ_CAT_FILES'				=> 'Depuis cette page il est possible de modifier les fichiers de la FAQ.',
+	'FAQ_CAT_LIST'				=> 'Depuis cette page, il est possible de gérer les catégories du fichier sélectionné.<br /><br /><strong>Une catégorie nommée « -- » permet de créer un saut de ligne sur la page de la FAQ.</strong>',
+	'FAQ_CAT_SUCCESS'			=> 'La catégorie a été ajoutée avec succès.',
+	'FAQ_CAT_QUESTION'			=> 'Depuis cette page, il est possible de gérer les questions de la catégorie sélectionnée.',
+	'FAQ_CAT_TOPIC'				=> 'Depuis cette page, il est possible d’ajouter une nouvelle question.',
+	'FAQ_DELETE_SUCCESS'		=> 'Les données de la FAQ ont été supprimées avec succès.',
+	'FAQ_EDIT_SUCCESS'			=> 'La FAQ a été mise à jour avec succès.',
+	'FAQ_TOPIC_SUCCESS'			=> 'La question a été ajoutée avec succès.',
+	'FAQ_FILE_NOT_EXIST'		=> 'Ce fichier n’existe pas.',
+	'FAQ_FILE_NO_WRITE'			=> 'Impossible de mettre à jour le fichier.  Merci de vérifier les permissions en écriture pour ce fichier.',
+	'FAQ_FILE_SELECT'			=> 'Sélectionner un fichier de la FAQ à modifier.',
 	'FAQ_LANGUAGE'				=> 'Langue',
 	'FAQ_LOCATION'				=> 'Emplacement',
-	'FAQ_MANAGER'				=> 'FAQ Manager',
-	'FAQ_MANAGE'				=> 'Gestionnaire de FAQ',
+	'FAQ_MANAGER'				=> 'Gestionnaire de FAQ',
+	'FAQ_MANAGE'				=> 'Gérer la FAQ',
 	'FAQ_NAME'					=> 'Nom',
 	'FAQ_QUESTION'				=> 'Question',
-	'FAQ_CAT_QUESTION'			=> 'Liste des questions',
-	'FAQ_SETTINGS'				=> 'Ajouter/éditer une question',
-	'FAQ_CAT_SETTINGS'			=> 'Edition des catéories',
+	'FAQ_CAT_SETTINGS_QUESTION'			=> 'Catégorie de questions',
+	'FAQ_SETTINGS'				=> 'Ajouter/modifier une question',
+	'FAQ_CAT_SETTINGS'			=> 'Modifier une catégorie de questions',
 
-	'LOAD_BACKUP'				=> 'Charger la sauvegarde',
+	'LOAD_BACKUP'				=> 'Restaurer la sauvegarde',
 
-	'LOG_FAQ_ADD'				=> '<strong>Article jouté</strong>',
-	'LOG_FAQ_DELETE'			=> '<strong>Article supprimé</strong>',
-	'LOG_FAQ_EDIT'				=> '<strong>Article édité</strong>',
-	'LOG_FAQ_RESTORE'			=> '<strong>FAQ restaurée depuis la sauvegarde</strong>',
+	'LOG_FAQ_ADD'				=> '<strong>Un article de la FAQ a été ajouté</strong>',
+	'LOG_FAQ_DELETE'			=> '<strong>Un article de la FAQ a été supprimé</strong>',
+	'LOG_FAQ_EDIT'				=> '<strong>Un article de la FAQ a été modifié</strong>',
+	'LOG_FAQ_RESTORE'			=> '<strong>LA FAQ a été restaurée depuis la sauvegarde</strong>',
 
-	'NOT_ALLOWED_OUT_OF_DIR'	=> 'Vous n\'êtes pas autorisé à éditer un fichier hors des dossiers de langue.',
-	'NO_FAQ_FILES'				=> 'Fichier FAQ indisponible.',
-	'NO_FAQ_VARS'				=> 'Il n\'y a pas de question dans cette catégorie.',
+	'NOT_ALLOWED_OUT_OF_DIR'	=> 'Vous n’êtes pas autorisé à modifier les fichiers en dehors du répertoire de la langue.',
+	'NO_FAQ_FILES'				=> 'Les fichiers de la FAQ sont indisponibles.',
+	'NO_FAQ_VARS'				=> 'Il n’y a aucune question dans cette catégorie.',
 
-	'ON_TO_NEXT'				=> 'Continuer ',
+	'ON_TO_NEXT'				=> 'Continuer ',
 
-	'VAR_NOT_EXIST'				=> 'La variable demandée n\'existe pas.',
+	'VAR_NOT_EXIST'				=> 'La variable demandée n’existe pas.',
 ));
